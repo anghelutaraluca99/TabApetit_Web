@@ -13,6 +13,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/TabApetit_web');
+var db = mongoose.connection;
 var firebase = require("firebase");
 var admin = require("firebase-admin");
 var request = require('request');
