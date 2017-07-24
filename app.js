@@ -16,10 +16,6 @@ var mongoose = require('mongoose');
 var firebase = require("firebase");
 var admin = require("firebase-admin");
 var request = require('request');
-mongoose.connect('mongodb://localhost/loginView', {
-    useMongoClient: true,
-});
-var db = mongoose.connection;
 
 //Firebase Init
 var config = {

@@ -4,7 +4,9 @@ var firebase = require('firebase');
 var admin = require('firebase-admin');
 var request = require('request');
 var yargs = require('yargs');
+
 var database = firebase.database();
+
 //Register
 router.get('/register', function(req, res, next) {
     res.render('register');
@@ -25,6 +27,10 @@ router.get('/reserve', function(req, res, next) {
     res.render('reserve'); 
 }); 
 
+//Bookings
+router.get('/bookings', function(req, res, next) {
+    res.render('bookings');
+})
 
 router.post('/', function(req, res, next) {
     firebase.auth().signOut().then(function() {
@@ -35,7 +41,35 @@ router.post('/', function(req, res, next) {
 })
 
 router.post('/reserve', function(req, res, next) {
+    var theme = req.body.theme;
+    var date = req.body.date;
+    var time = req.body.time;
+    var place = req.body.place;
     
+    //VALIDATION
+    req.checkBody('theme', 'Theme is required').notEmpty();
+    req.checkBody('date', 'Date is required').notEmpty();
+    req.checkBody('time', 'Time is required').notEmpty();
+    req.checkBody('place', 'Restaurant is required').notEmpty();
+    
+    var errors = req.validationErrors();
+    
+    if(errors){
+        res.render('reserve', {
+            errors:errors
+        });
+    } else{
+        var newPostKey = database.ref().child('Debates').push().key;
+         database.ref('Debates/' + newPostKey).set({
+             place: place,
+             theme: theme,
+             date: date,
+             time: time,
+             numberOfParticipants: 1
+         });
+        res.redirect('bookings');
+        req.flash('success_msg', 'Your booking was successfull');
+    }
 });
 
 router.post('/login', function(req, res, next) {
@@ -105,13 +139,11 @@ router.post('/register', function(req, res, next) {
         disabled: false
     })
   .then(function(userRecord) {
-            var uid = userRecord.uid
-        function writeUserData(uid, name, email) {
-            firebase.database().ref('users/' + userId).set({
-            username: name,
+            var uid = userRecord.uid;
+            database.ref('users/' + uid).set({
+            name: name,
             email: email
         });
-    }
     req.flash('success_msg', 'Registration succesfull. You can now log in.');               res.redirect('login');
     //console.log("Successfully created new user:", userRecord.uid);
   })

@@ -90,6 +90,12 @@
     </style>
   </head>
   <body>
+      {{#if errors}}
+        {{#each errors}}
+            <div class="alert alert-danger">{{msg}}</div>
+        {{/each}}
+      {{/if}}
+      
       <form method="post" action="/users/reserve">
       <div class="submitReservation">
             <h2 class="page-header">Reserve</h2>
@@ -113,9 +119,9 @@
         <input type="text" placeholder="AM/PM" name="time">
       </div>
       <button type="submit" class="btn btn-default">Book</button>
-      </form>
     <div><input id="pac-input" class="controls" type="text" placeholder="Select a restaurant" name="place"></div>
     <div id="map"></div>
+      </form>
     <script>
 //      function initMap() {
 //        var uluru = {lat: -25.363, lng: 131.044};
