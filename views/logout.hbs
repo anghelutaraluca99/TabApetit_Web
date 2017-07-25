@@ -1,0 +1,22 @@
+{{#if error}}
+     <div class="alert alert-danger">{{error}}</div>
+{{/if}}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+        <link rel="stylesheet" href="/stylesheets/style.css"> 
+    </head>
+    
+    <body>
+        <div>
+            <h4 class="page-header">Are you sure you want to log out?</h4>
+            <form method="post" action="/users/logout">
+                <button type="submit" class="btn btn-default">Confirm</button>
+            </form>
+        </div>
+    </body>
+</html>
+
+
+
