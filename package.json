@@ -22,16 +22,9 @@
     "googlemaps": "^1.12.0",
     "googleplaces": "^0.6.1",
     "jade": "~1.11.0",
-    "mongodb": "*",
-    "mongoose": "*",
     "morgan": "~1.8.1",
-    "passport": "*",
     "passport-firebase-auth": "0.0.0-beta.1",
-    "passport-http": "*",
-    "passport-local": "*",
-    "request": "^2.81.0",
     "serve-favicon": "~2.4.2",
-    "stylus": "0.54.5",
-    "yargs": "^8.0.2"
+    "stylus": "0.54.5"
   }
 }

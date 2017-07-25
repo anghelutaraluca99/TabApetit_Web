@@ -9,15 +9,8 @@ var hbs = require('express-handlebars');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/TabApetit_web');
-var db = mongoose.connection;
 var firebase = require("firebase");
 var admin = require("firebase-admin");
-var request = require('request');
 
 //Firebase Init
 var config = {
@@ -91,10 +84,6 @@ app.use(expressValidator({
 
 //Connect Flash
 app.use(flash());
-
-//Passport 
-app.use(passport.initialize());
-app.use(passport.session());
 
 //Global Vars
 app.use(function (req, res, next) {

@@ -3,7 +3,6 @@ var router = express.Router();
 var firebase = require('firebase');
 var admin = require('firebase-admin');
 var request = require('request');
-var yargs = require('yargs');
 var database = firebase.database();
 
 //GETS
