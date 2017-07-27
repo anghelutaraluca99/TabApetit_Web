@@ -35,13 +35,27 @@ router.get('/reserve', function(req, res, next) {
 
 //Bookings
 router.get('/bookings', function(req, res, next) {
-    var user = firebase.auth().currentUser;
-    if (user) {
-        res.render('bookings')
-    } else {
-        res.render('login', {
-            error: 'You must be logged in to access this page'
+
+    var debates;
+    var number;
+    var keys;
+    
+    database.ref().child('Debates').on("value", gotData, errData);
+    
+    function errData(error) {
+    console.log("Something went wrong.");
+    console.log(error);
+        res.render('index', {
+            error: error
         });
+    }
+    
+    function gotData(data) {
+        debates = data.val();
+        
+        res.render('bookings', {
+            debates: debates
+        }); 
     }
 });
 

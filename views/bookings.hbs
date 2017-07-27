@@ -6,5 +6,25 @@
     
     <body>
         <h2 class="page-header">See other bookings</h2>
+        <table>
+            <tr>
+            <th>Theme</th>
+            <th>Place</th> 
+            <th>Date</th>
+            <th>Hour</th>
+            <th>Number of participants</th>
+            </tr>
+            
+            {{#each debates}}
+            <tr>
+                <td>{{this.theme}}</td>
+                <td>{{this.placeName}}</td>
+                <td>{{this.date}}</td>
+                <td>{{this.time}}</td>
+                <td>{{this.numberOfParticipants}}</td>
+            </tr>
+            {{/each}}
+            
+        </table>
     </body>
 </html>

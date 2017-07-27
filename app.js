@@ -21,7 +21,6 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
-
 var serviceAccount = require(__dirname + "/Tab Apetit.json");
 
 admin.initializeApp({
