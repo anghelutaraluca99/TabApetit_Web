@@ -39,7 +39,7 @@ router.get('/bookings', function(req, res, next) {
     var debates;
     var number;
     var keys;
-    
+
     database.ref().child('Debates').on("value", gotData, errData);
     
     function errData(error) {
