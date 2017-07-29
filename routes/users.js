@@ -112,8 +112,10 @@ router.post('/reserve', function(req, res, next) {
     var date = req.body.date;
     var time = req.body.time;
     var place = req.body.place;
-    var lat = req.body.lat;
-    var long = req.body.long;
+    var lat = parseFloat(req.body.lat, 10);
+    var long = parseFloat(req.body.long, 10);
+//    var lat = req.body.lat;
+//    var long = req.body.long;
     
     //VALIDATION
     req.checkBody('theme', 'Theme is required').notEmpty();

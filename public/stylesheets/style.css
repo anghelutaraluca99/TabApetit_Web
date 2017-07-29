@@ -1,35 +1,40 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url("../images/mainBackground.jpg");
-}
-a {
-  color: #00b7ff;
-}
+	  padding: 50px;
+	  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	  background-image: url("../images/mainBackground.jpg");
+	}
+	a {
+	  color: #00b7ff;
+	}
+	
 
-.bookingsTable {
-    background-color: white;
-    width: 100%;
-}
+	.bookingsTable {
+	    background-color: white;
+	    width: 100%;
+	}
+	
 
-.bookingsTable td {
-    height: 30px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
+	.bookingsTable td {
+	    height: 30px;
+	    text-align: center;
+	    border-bottom: 1px solid #ddd;
+	}
+	
 
-.bookingsTable th {
-    background-color: #5C80BC;
-    color: floralwhite;
-    height: 50px;
-    width: 200px;
-    text-align: center;
-}
+	.bookingsTable th {
+	    background-color: #5C80BC;
+	    color: floralwhite;
+	    height: 50px;
+	    width: 200px;
+	    text-align: center;
+	}
+	
 
-.bookingsTable tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
+	.bookingsTable tr:nth-child(even) {
+	    background-color: #f2f2f2;
+	}
+	
 
-.bookingsTable tr:hover {
-    background-color: #ECE2D0;
-}
+	.bookingsTable tr:hover {
+	    background-color: #ECE2D0;
+	}
