@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <h2>Details</h2>
+      
+    <div class="form-group">
+        <label>Place Latitude:</label>
+        <label id="placeLat">{{placeLat}}</label>
+    </div>
+    <div class="form-group">
+        <label>Place Longitude:</label>
+        <label id="placeLong">{{placeLong}}</label>
+    </div>
+    <div id="map"></div>
+    <script>
+        var placeLat = document.getElementById(placeLat).textContent;
+        var placeLong = document.getElementById(placeLong).textContent;
+        
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: placeLat, lng: placeLong},
+          mapTypeId: 'roadmap'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: placeLat, lng: placeLong},
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAThKrf94iYLmsvfG6x6BPDKLklX3yqmzY&callback=initMap">
+    </script>
+  </body>
+</html>
+

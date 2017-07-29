@@ -40,23 +40,35 @@ router.get('/bookings', function(req, res, next) {
     var number;
     var keys;
 
-    database.ref().child('Debates').on("value", gotData, errData);
+    var func = database.ref().child('Debates').once('value')
     
-    function errData(error) {
-    console.log("Something went wrong.");
-    console.log(error);
-        res.render('index', {
-            error: error
-        });
-    }
-    
-    function gotData(data) {
+    func.then(function(data) {
         debates = data.val();
-        
-        res.render('bookings', {
+        return res.render('bookings', {
             debates: debates
-        }); 
-    }
+        });
+        
+    func.catch(function () {
+        console.log("Promise Rejected");
+});
+});
+    
+//    database.ref().child('Debates').on("value", gotData, errData);
+//    function errData(error) {
+//    console.log("Something went wrong.");
+//    console.log(error);
+//        return res.render('index', {
+//            error: error
+//        });
+//    }
+//    
+//    function gotData(data) {
+//        debates = data.val();
+//        
+//        return res.render('bookings', {
+//            debates: debates
+//        }); 
+//    }
 });
 
 //Logout
@@ -71,6 +83,20 @@ router.get('/logout', function(req, res, next) {
     }
 });
 
+//Details
+router.post('/enter', function(req, res, next) {
+    var reservationId = req.body.id;
+    var numberOfParticipants = parseInt(req.body.numberOfParticipants, 10);
+    numberOfParticipants = numberOfParticipants + 1;
+    database.ref().child('Debates/'+reservationId).update({
+       numberOfParticipants:  numberOfParticipants
+    });
+    database.ref().child('Debates/'+reservationId+'/participants').update({
+        participant: firebase.auth().currentUser.uid
+    });
+    return res.redirect('bookings');
+    req.flash('success_msg', 'Your booking was successfull');
+});
 
 //POSTS
 router.post('/logout', function(req, res, next) {
@@ -118,7 +144,7 @@ router.post('/reserve', function(req, res, next) {
         database.ref('Debates/' + newPostKey + '/participants').set({
              0: firebase.auth().currentUser.uid
          });
-        res.redirect('bookings');
+        return res.redirect('bookings');
         req.flash('success_msg', 'Your booking was successfull');
     }
 });
